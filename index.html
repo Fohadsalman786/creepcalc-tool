@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreepCalc — Scope Creep Calculator for Freelancers</title>
+    <meta name="description" content="Free freelance scope creep calculator. Find out exactly how much money you're losing when clients expand projects without expanding the budget.">
+    <meta name="keywords" content="scope creep calculator, freelancer calculator, freelance pricing, project cost calculator">
+    <meta property="og:title" content="CreepCalc — Scope Creep Calculator">
+    <meta property="og:description" content="See exactly how much money scope creep is costing you. Free tool for freelancers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://creepcalc.com">
+    <link rel="canonical" href="https://creepcalc.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000;
+            --bg-card: #0D0D0D;
+            --bg-card-hover: #141414;
+            --bg-elevated: #1A1A1A;
+            --text: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --text-dark: #555555;
+            --accent: #FACC15;
+            --accent-hover: #EAB308;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.15);
+            --danger: #EF4444;
+            --warning: #F59E0B;
+            --success: #22C55E;
+            --glow-yellow: rgba(250, 204, 21, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 40px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.5px;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-cta {
+            padding: 8px 20px;
+            background: var(--accent);
+            color: #000;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 60px 20px 40px;
+                gap: 40px;
+            }
+        }
+
+        .hero-left .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+
+        .hero-left .eyebrow .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-left h1 {
+            font-size: clamp(40px, 5vw, 60px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+        }
+
+        .hero-left h1 .italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .hero-left h1 .accent {
+            color: var(--accent);
+        }
+
+        .hero-left p {
+            font-size: 17px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 480px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            padding: 14px 28px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-ghost:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .hero-card .card-label {
+            position: absolute;
+            top: -1px;
+            right: 24px;
+            padding: 4px 12px;
+            background: var(--bg);
+            font-size: 11px;
+            color: var(--text-dark);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .hero-card .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-card .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .hero-card .metric-label {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .hero-card .metric-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--danger);
+        }
+
+        .hero-card .metric-value.green {
+            color: var(--success);
+        }
+
+        .hero-card .total-row {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hero-card .total-label {
+            font-size: 13px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-card .total-value {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--danger);
+            letter-spacing: -1px;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        @media (max-width: 900px) {
+            .calculator-section {
+                padding: 40px 20px;
+            }
+        }
+
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(28px, 3.5vw, 40px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .section-header h2 .italic {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* Calculator Grid */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .calc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Input Card */
+        .input-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px;
+        }
+
+        .input-card .card-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .input-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .input-card .card-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            margin-bottom: 22px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .input-group label .sub {
+            font-weight: 400;
+            color: var(--text-dark);
+            font-size: 12px;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper .prefix {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            pointer-events: none;
+        }
+
+        .input-wrapper .suffix {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 13px;
+            color: var(--text-dark);
+            pointer-events: none;
+        }
+
+        input[type="number"],
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input[type="number"]:focus,
+        input[type="text"]:focus,
+        textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--glow-yellow);
+            background: rgba(250, 204, 21, 0.03);
+        }
+
+        input.has-prefix {
+            padding-left: 32px;
+        }
+
+        input.has-suffix {
+            padding-right: 40px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .btn-calculate {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 8px;
+        }
+
+        .btn-calculate:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+
+        /* Results Card */
+        .results-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px;
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .results-card.visible {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-card .card-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .results-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .results-card .card-desc {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .placeholder {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-dark);
+        }
+
+        .placeholder .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+
+        .placeholder p {
+            font-size: 14px;
+        }
+
+        .result-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .metric .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .metric .value {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .metric .value.danger { color: var(--danger); }
+        .metric .value.warning { color: var(--warning); }
+        .metric .value.success { color: var(--success); }
+        .metric .value.accent { color: var(--accent); }
+
+        .metric .sub {
+            font-size: 12px;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        /* AI Analysis */
+        .ai-box {
+            background: rgba(250, 204, 21, 0.04);
+            border: 1px solid rgba(250, 204, 21, 0.15);
+            border-radius: 10px;
+            padding: 22px;
+            margin-top: 24px;
+        }
+
+        .ai-box .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .ai-box .ai-badge {
+            padding: 3px 10px;
+            background: rgba(250, 204, 21, 0.15);
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .ai-box .ai-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        .ai-box .ai-text strong {
+            color: var(--text);
+        }
+
+        .ai-loading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-size: 13px;
+        }
+
+        .ai-loading .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-action {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-action:hover {
+            border-color: var(--border-hover);
+            color: var(--text);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .how-it-works {
+                padding: 60px 20px;
+            }
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .step {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            transition: border-color 0.3s;
+        }
+
+        .step:hover {
+            border-color: var(--border-hover);
+        }
+
+        .step .step-num {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .step h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step p {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 900px) {
+            .faq-section {
+                padding: 60px 20px;
+            }
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-question {
+            padding: 22px 0;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question .arrow {
+            font-size: 12px;
+            color: var(--text-dark);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            padding-bottom: 22px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                flex-direction: column;
+                gap: 16px;
+                padding: 30px 20px;
+            }
+        }
+
+        .footer-left {
+            font-size: 13px;
+            color: var(--text-dark);
+        }
+
+        .footer-left strong {
+            color: var(--text);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* Ad Placeholder */
+        .ad-slot {
+            max-width: 728px;
+            margin: 40px auto;
+            padding: 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            .ad-slot {
+                padding: 0 20px;
+            }
+        }
+
+        .ad-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 12px;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Share Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .modal p {
+            color: var(--text-muted);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .share-image {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .share-image .big-number {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--danger);
+            letter-spacing: -1px;
+        }
+
+        .share-image .share-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .share-image .brand {
+            font-size: 12px;
+            color: var(--accent);
+            margin-top: 16px;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            padding: 10px 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+            border-color: var(--border-hover);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="nav-logo">creep<span>calc</span></a>
+        <div class="nav-links">
+            <a href="#calculator">Calculator</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#faq">FAQ</a>
+            <a href="/blog">Blog</a>
+            <a href="https://coverpitch.io" class="nav-cta">Try CoverPitch →</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="eyebrow">
+                <span class="dot"></span>
+                Free tool — no login, no signup
+            </div>
+            <h1>The <span class="italic">missing</span> tool<br>for <span class="accent">scope creep</span></h1>
+            <p>Enter your project details and see exactly how much money clients are costing you when they expand the scope without expanding the budget.</p>
+            <div class="hero-buttons">
+                <a href="#calculator" class="btn-primary">Calculate now →</a>
+                <a href="#how-it-works" class="btn-ghost">How it works</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-card">
+                <div class="card-label">SAMPLE RESULT</div>
+                <div class="metric-row">
+                    <span class="metric-label">Original Rate</span>
+                    <span class="metric-value green">$125/hr</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Actual Rate</span>
+                    <span class="metric-value">$68/hr</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Extra Hours</span>
+                    <span class="metric-value">22 hrs</span>
+                </div>
+                <div class="metric-row">
+                    <span class="metric-label">Rate Drop</span>
+                    <span class="metric-value">-46%</span>
+                </div>
+                <div class="total-row">
+                    <span class="total-label">Profit Lost</span>
+                    <span class="total-value">$2,750</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculator -->
+    <section class="calculator-section" id="calculator">
+        <div class="section-header">
+            <div class="section-label">01 · Calculator</div>
+            <h2>See the <span class="italic">real</span> cost</h2>
+        </div>
+
+        <div class="calc-grid">
+            <!-- Input -->
+            <div class="input-card">
+                <div class="card-number">01</div>
+                <h3>Project Details</h3>
+                <p class="card-desc">Fill in your numbers below</p>
+
+                <div class="input-group">
+                    <label>
+                        Original Project Fee
+                        <span class="sub">The fixed price you quoted</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <span class="prefix">$</span>
+                        <input type="number" id="projectFee" class="has-prefix" placeholder="5,000" min="0">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Estimated Hours
+                        <span class="sub">How long you thought it would take</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" id="estimatedHours" placeholder="40" min="0">
+                        <span class="suffix">hrs</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Actual Hours Spent
+                        <span class="sub">Including all extra revisions & meetings</span>
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="number" id="actualHours" placeholder="60" min="0">
+                        <span class="suffix">hrs</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        What caused the scope creep?
+                        <span class="sub">Optional — AI will analyze this</span>
+                    </label>
+                    <textarea id="scopeCreepReason" placeholder="e.g. Client asked for 3 extra revisions, added new pages, requested weekend meetings..."></textarea>
+                </div>
+
+                <button class="btn-calculate" onclick="calculateScopeCreep()">
+                    Calculate My Loss →
+                </button>
+            </div>
+
+            <!-- Results -->
+            <div class="results-card" id="resultsCard">
+                <div class="placeholder" id="placeholderState">
+                    <div class="icon">→</div>
+                    <p>Your results will appear here</p>
+                </div>
+
+                <div id="resultsContent" style="display: none;">
+                    <div class="card-number">02</div>
+                    <h3 id="resultTitle">Your Analysis</h3>
+                    <p class="card-desc" id="resultSubtitle">Here's what the extra work cost you</p>
+
+                    <div class="result-metrics">
+                        <div class="metric">
+                            <div class="label">Profit Lost</div>
+                            <div class="value danger" id="profitLost">$0</div>
+                            <div class="sub">Unpaid extra hours</div>
+                        </div>
+                        <div class="metric">
+                            <div class="label">Rate Drop</div>
+                            <div class="value warning" id="rateDrop">-$0/hr</div>
+                            <div class="sub">Effective rate fell by</div>
+                        </div>
+                        <div class="metric">
+                            <div class="label">Original Rate</div>
+                            <div class="value success" id="originalRate">$0/hr</div>
+                            <div class="sub">What you expected</div>
+                        </div>
+                        <div class="metric">
+                            <div class="label">Real Rate</div>
+                            <div class="value danger" id="realRate">$0/hr</div>
+                            <div class="sub">What you actually earned</div>
+                        </div>
+                        <div class="metric">
+                            <div class="label">Extra Hours</div>
+                            <div class="value accent" id="extraHours">0</div>
+                            <div class="sub">Unbilled time</div>
+                        </div>
+                        <div class="metric">
+                            <div class="label">Annual Loss (Est.)</div>
+                            <div class="value warning" id="annualLoss">$0</div>
+                            <div class="sub">If this repeats monthly</div>
+                        </div>
+                    </div>
+
+                    <!-- AI Analysis -->
+                    <div class="ai-box">
+                        <div class="ai-header">
+                            <div class="ai-badge">AI ANALYSIS</div>
+                        </div>
+                        <div id="aiAnalysisContent">
+                            <div class="ai-loading">
+                                <div class="spinner"></div>
+                                <span>Analyzing your scope creep...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="action-buttons">
+                        <button class="btn-action" onclick="openShareModal()">📤 Share Result</button>
+                        <button class="btn-action" onclick="copyResults()">📋 Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slot -->
+    <div class="ad-slot">
+        <div class="ad-box">
+            <!-- Google AdSense Ad Unit -->
+            <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
+            Advertisement Space
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <div class="section-label">02 · How it works</div>
+            <h2>Three <span class="italic">steps</span></h2>
+        </div>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-num">01</div>
+                <h4>Enter Your Numbers</h4>
+                <p>Input your project fee, estimated hours, and actual hours spent. No signup, no account needed.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <h4>See the Damage</h4>
+                <p>Instantly see your real hourly rate, profit lost, and what scope creep is actually costing you.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <h4>Get AI Advice</h4>
+                <p>Our AI analyzes your situation and gives you actionable tips and phrases to use with clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <div class="section-label">03 · FAQ</div>
+            <h2>Questions & <span class="italic">answers</span></h2>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                What is freelance scope creep?
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Scope creep happens when a client requests additional features, extra revisions, or more meetings beyond the original agreement — without increasing the budget. Your effective hourly rate drops while your time investment increases.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                How do I prevent scope creep?
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Write detailed contracts with revision caps, set clear deliverables, track time in real-time, and learn to say: "I'm happy to do that — let me send a change order with the additional cost."</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Is this really free?
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes. No login, no signup, no credit card. We keep it free with non-intrusive ads so every freelancer can understand the real cost of unpaid extra work.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">
+                Can I share my results?
+                <span class="arrow">▼</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes — click "Share Result" to generate a shareable summary. Freelancers love posting these on Reddit and Twitter to raise awareness about scope creep.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            © 2026 <strong>creepcalc</strong> — Built for freelancers
+        </div>
+        <div class="footer-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </div>
+    </footer>
+
+    <!-- Share Modal -->
+    <div class="modal-overlay" id="shareModal">
+        <div class="modal">
+            <h3>Share Your Scope Creep Story</h3>
+            <p>Let others know how much unpaid work costs freelancers</p>
+            <div class="share-image" id="shareImage">
+                <div class="big-number" id="shareNumber">$1,500</div>
+                <div class="share-text" id="shareText">lost to scope creep on a single project</div>
+                <div class="brand">creepcalc.com</div>
+            </div>
+            <button class="modal-close" onclick="closeShareModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Copied to clipboard</div>
+
+    <script>
+        let currentResults = null;
+
+        function calculateScopeCreep() {
+            const fee = parseFloat(document.getElementById('projectFee').value);
+            const estimated = parseFloat(document.getElementById('estimatedHours').value);
+            const actual = parseFloat(document.getElementById('actualHours').value);
+            const reason = document.getElementById('scopeCreepReason').value.trim();
+
+            if (!fee || !estimated || !actual) {
+                showToast('Please fill in all required fields');
+                return;
+            }
+
+            if (actual <= estimated) {
+                showToast('Actual hours must be greater than estimated hours');
+                return;
+            }
+
+            const originalRate = fee / estimated;
+            const realRate = fee / actual;
+            const extraHours = actual - estimated;
+            const profitLost = extraHours * originalRate;
+            const rateDrop = originalRate - realRate;
+            const rateDropPercent = ((rateDrop / originalRate) * 100).toFixed(0);
+            const annualLoss = profitLost * 12;
+
+            let title;
+            if (rateDropPercent >= 50) title = 'Critical — Working for less than half';
+            else if (rateDropPercent >= 30) title = 'Significant rate drop detected';
+            else title = 'Warning — Address this now';
+
+            const formatMoney = (n) => '$' + Math.round(n).toLocaleString();
+            const formatRate = (n) => '$' + Math.round(n) + '/hr';
+
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultSubtitle').textContent = `${extraHours} extra hours cost you ${formatMoney(profitLost)} in lost revenue`;
+            document.getElementById('profitLost').textContent = formatMoney(profitLost);
+            document.getElementById('rateDrop').textContent = `-${rateDropPercent}%`;
+            document.getElementById('originalRate').textContent = formatRate(originalRate);
+            document.getElementById('realRate').textContent = formatRate(realRate);
+            document.getElementById('extraHours').textContent = extraHours + ' hrs';
+            document.getElementById('annualLoss').textContent = formatMoney(annualLoss);
+
+            currentResults = { profitLost, rateDrop, originalRate, realRate, extraHours, annualLoss, fee };
+
+            document.getElementById('placeholderState').style.display = 'none';
+            document.getElementById('resultsContent').style.display = 'block';
+            document.getElementById('resultsCard').classList.add('visible');
+
+            runAIAnalysis(reason, { fee, estimated, actual, originalRate, realRate, extraHours, profitLost, rateDropPercent });
+        }
+
+        async function runAIAnalysis(reason, data) {
+            const container = document.getElementById('aiAnalysisContent');
+            const apiKey = ''; // Replace with your API key
+
+            if (!apiKey) {
+                container.innerHTML = getTemplateAnalysis(reason, data);
+                return;
+            }
+
+            container.innerHTML = `<div class="ai-loading"><div class="spinner"></div><span>Analyzing...</span></div>`;
+
+            try {
+                const prompt = `You are a freelance business advisor. A freelancer lost money to scope creep.
+
+Data:
+- Project Fee: $${data.fee}
+- Estimated Hours: ${data.estimated}
+- Actual Hours: ${data.actual}
+- Extra Hours: ${data.extraHours}
+- Original Rate: $${Math.round(data.originalRate)}/hr
+- Real Rate: $${Math.round(data.realRate)}/hr
+- Profit Lost: $${Math.round(data.profitLost)}
+- Rate Drop: ${data.rateDropPercent}%
+- Reason: ${reason || 'Not specified'}
+
+Provide a concise analysis (max 120 words): 1) What went wrong 2) One actionable prevention tip 3) A phrase to use with the client going forward. Be direct, no fluff.`;
+
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        messages: [{ role: 'user', content: prompt }],
+                        max_tokens: 300,
+                        temperature: 0.7
+                    })
+                });
+                const result = await response.json();
+                container.innerHTML = `<div class="ai-text">${result.choices[0].message.content}</div>`;
+            } catch (error) {
+                container.innerHTML = getTemplateAnalysis(reason, data);
+            }
+        }
+
+        function getTemplateAnalysis(reason, data) {
+            let html = `<div class="ai-text">`;
+            if (data.rateDropPercent >= 50) {
+                html += `<strong>Your rate dropped ${data.rateDropPercent}%.</strong> You gave away <strong>${Math.round(data.extraHours)} hours</strong> for free. At your original rate of <strong>$${Math.round(data.originalRate)}/hr</strong>, that's <strong>$${Math.round(data.profitLost)}</strong> lost.`;
+            } else {
+                html += `<strong>Small drops compound.</strong> At this rate, you could lose <strong>$${Math.round(data.annualLoss)}/year</strong> if scope creep repeats monthly.`;
+            }
+            html += `</p><br><p><strong>Prevention:</strong> Always cap revisions in your contract. When clients ask for extras, say: <em>"Happy to help! I'll send a change order with the additional cost."</em></p>`;
+            if (reason) {
+                html += `<br><p><strong>On your situation:</strong> Set clear deliverables upfront and track time in real-time — not after the project ends.</p>`;
+            }
+            html += `</div>`;
+            return html;
+        }
+
+        function toggleFaq(el) {
+            el.parentElement.classList.toggle('open');
+        }
+
+        function openShareModal() {
+            if (!currentResults) return;
+            document.getElementById('shareNumber').textContent = '$' + Math.round(currentResults.profitLost).toLocaleString();
+            document.getElementById('shareText').textContent = `lost to scope creep — ${currentResults.extraHours} extra hours unpaid`;
+            document.getElementById('shareModal').classList.add('show');
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.remove('show');
+        }
+
+        function copyResults() {
+            if (!currentResults) return;
+            const text = `My scope creep analysis:\n• Project Fee: $${currentResults.fee}\n• Extra Hours: ${currentResults.extraHours}\n• Profit Lost: $${Math.round(currentResults.profitLost).toLocaleString()}\n• Real Rate: $${Math.round(currentResults.realRate)}/hr\n\ncalculated at creepcalc.com`;
+            navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard'));
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        document.querySelectorAll('input[type="number"]').forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') calculateScopeCreep();
+            });
+        });
+    </script>
+</body>
+</html>

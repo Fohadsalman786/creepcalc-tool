@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — CreepCalc</title>
+    <meta name="description" content="Tips, guides, and insights about freelancing, pricing, and avoiding scope creep.">
+    <link rel="canonical" href="https://creepcalc.com/blog">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000; --bg-card: #0D0D0D; --bg-card-hover: #141414; --bg-elevated: #1A1A1A;
+            --text: #FFFFFF; --text-muted: #A0A0A0; --text-dark: #555555;
+            --accent: #FACC15; --accent-hover: #EAB308;
+            --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+        .nav { position: sticky; top: 0; z-index: 50; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 8px 20px; background: var(--accent); color: #000; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; }
+        .page-container { max-width: 900px; margin: 0 auto; padding: 80px 40px 100px; }
+        .page-header { margin-bottom: 48px; }
+        .page-header .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 100px; font-size: 12px; color: var(--text-muted); margin-bottom: 20px; font-weight: 500; }
+        .page-header h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 12px; }
+        .page-header h1 .accent { color: var(--accent); }
+        .page-header p { font-size: 16px; color: var(--text-muted); line-height: 1.6; }
+
+        /* Blog Grid */
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+        .blog-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; transition: all 0.2s; cursor: pointer; text-decoration: none; display: block; }
+        .blog-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
+        .blog-card .tag { display: inline-block; padding: 4px 10px; background: rgba(250,204,21,0.1); color: var(--accent); border-radius: 6px; font-size: 11px; font-weight: 600; margin-bottom: 14px; }
+        .blog-card h3 { font-size: 17px; font-weight: 700; line-height: 1.4; margin-bottom: 10px; color: var(--text); }
+        .blog-card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+        .blog-card .meta { font-size: 12px; color: var(--text-dark); display: flex; justify-content: space-between; }
+        .blog-card .meta .read-time { color: var(--accent); }
+
+        /* Ad Slot in Blog */
+        .ad-slot { max-width: 728px; margin: 40px auto; padding: 0; }
+        .ad-box { background: rgba(255,255,255,0.02); border: 1px dashed var(--border); border-radius: 10px; padding: 20px; text-align: center; color: var(--text-dark); font-size: 12px; }
+
+        .footer { border-top: 1px solid var(--border); padding: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { font-size: 13px; color: var(--text-dark); }
+        .footer-left strong { color: var(--text); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--text); }
+        @media (max-width: 768px) {
+            .page-container { padding: 60px 20px 80px; }
+            .nav { padding: 0 20px; }
+            .footer { flex-direction: column; gap: 16px; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="nav-logo">creep<span>calc</span></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#calculator">Calculator</a>
+            <a href="/blog">Blog</a>
+            <a href="https://coverpitch.io" class="nav-cta">Try CoverPitch →</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <div class="eyebrow">
+                <span style="width:6px;height:6px;background:#22C55E;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span>
+                Resources
+            </div>
+            <h1>The <span class="accent">Blog</span></h1>
+            <p>Tips, guides, and insights about freelancing, pricing, and avoiding scope creep.</p>
+        </div>
+
+        <div class="blog-grid">
+            <!-- Article 1 -->
+            <a href="#" class="blog-card">
+                <div class="tag">Pricing</div>
+                <h3>How to Price Freelance Projects Without Losing Money</h3>
+                <p>Most freelancers undercharge because they don't account for scope creep. Here's how to build buffer into your pricing...</p>
+                <div class="meta">
+                    <span>Jul 20, 2026</span>
+                    <span class="read-time">5 min read</span>
+                </div>
+            </a>
+
+            <!-- Article 2 -->
+            <a href="#" class="blog-card">
+                <div class="tag">Client Management</div>
+                <h3>5 Signs Your Client Is About to Cause Scope Creep</h3>
+                <p>Learn to spot the red flags early. From vague project descriptions to "just one more thing" emails...</p>
+                <div class="meta">
+                    <span>Jul 15, 2026</span>
+                    <span class="read-time">4 min read</span>
+                </div>
+            </a>
+
+            <!-- Article 3 -->
+            <a href="#" class="blog-card">
+                <div class="tag">Contracts</div>
+                <h3>The Freelancer's Guide to Scope-Locked Contracts</h3>
+                <p>How to write contracts that protect you from endless revisions and "small changes" that add up...</p>
+                <div class="meta">
+                    <span>Jul 10, 2026</span>
+                    <span class="read-time">7 min read</span>
+                </div>
+            </a>
+
+            <!-- Article 4 -->
+            <a href="#" class="blog-card">
+                <div class="tag">Tools</div>
+                <h3>Why You Should Track Scope Creep on Every Project</h3>
+                <p>Using data to understand your true hourly rate and avoid the "I made $5/hour" nightmare...</p>
+                <div class="meta">
+                    <span>Jul 5, 2026</span>
+                    <span class="read-time">3 min read</span>
+                </div>
+            </a>
+
+            <!-- Article 5 -->
+            <a href="#" class="blog-card">
+                <div class="tag">Strategy</div>
+                <h3>How I Stopped Losing Money on Client Projects</h3>
+                <p>A personal story about turning around a freelancing business by understanding scope creep economics...</p>
+                <div class="meta">
+                    <span>Jun 28, 2026</span>
+                    <span class="read-time">6 min read</span>
+                </div>
+            </a>
+
+            <!-- Article 6 -->
+            <a href="#" class="blog-card">
+                <div class="tag">Freelance Tips</div>
+                <h3>Client Says "This Should Be Quick" — What to Do</h3>
+                <p>How to respond professionally when clients try to minimize the effort required for additional work...</p>
+                <div class="meta">
+                    <span>Jun 20, 2026</span>
+                    <span class="read-time">4 min read</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Ad Slot -->
+        <div class="ad-slot">
+            <div class="ad-box">
+                <!-- Google AdSense Ad Unit -->
+                <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
+                Advertisement Space
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-left">© 2026 <strong>creepcalc</strong> — Built for freelancers</div>
+        <div class="footer-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </div>
+    </footer>
+
+    <style>@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }</style>
+</body>
+</html>

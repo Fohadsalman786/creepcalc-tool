@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — CreepCalc</title>
+    <meta name="description" content="Contact CreepCalc. We'd love to hear from you.">
+    <link rel="canonical" href="https://creepcalc.com/contact">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #000000; --bg-card: #0D0D0D; --bg-card-hover: #141414; --bg-elevated: #1A1A1A;
+            --text: #FFFFFF; --text-muted: #A0A0A0; --text-dark: #555555;
+            --accent: #FACC15; --accent-hover: #EAB308;
+            --border: rgba(255,255,255,0.08); --border-hover: rgba(255,255,255,0.15);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+        .nav { position: sticky; top: 0; z-index: 50; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-size: 18px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; text-decoration: none; }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        .nav-cta { padding: 8px 20px; background: var(--accent); color: #000; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; }
+        .page-container { max-width: 600px; margin: 0 auto; padding: 80px 40px 100px; }
+        .page-header { margin-bottom: 48px; }
+        .page-header .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--border); border-radius: 100px; font-size: 12px; color: var(--text-muted); margin-bottom: 20px; font-weight: 500; }
+        .page-header h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 12px; }
+        .page-header h1 .accent { color: var(--accent); }
+        .page-header p { font-size: 16px; color: var(--text-muted); line-height: 1.6; }
+        .contact-methods { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+        .contact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; transition: all 0.2s; }
+        .contact-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+        .contact-card .icon { font-size: 24px; margin-bottom: 12px; }
+        .contact-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+        .contact-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+        .contact-card a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .contact-card a:hover { text-decoration: underline; }
+        .response-time { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; text-align: center; }
+        .response-time p { font-size: 14px; color: var(--text-muted); }
+        .response-time strong { color: var(--accent); }
+        .footer { border-top: 1px solid var(--border); padding: 40px; display: flex; justify-content: space-between; align-items: center; }
+        .footer-left { font-size: 13px; color: var(--text-dark); }
+        .footer-left strong { color: var(--text); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--text); }
+        @media (max-width: 768px) {
+            .page-container { padding: 60px 20px 80px; }
+            .nav { padding: 0 20px; }
+            .footer { flex-direction: column; gap: 16px; padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="/" class="nav-logo">creep<span>calc</span></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/#calculator">Calculator</a>
+            <a href="/blog">Blog</a>
+            <a href="https://coverpitch.io" class="nav-cta">Try CoverPitch →</a>
+        </div>
+    </nav>
+
+    <div class="page-container">
+        <div class="page-header">
+            <div class="eyebrow">
+                <span style="width:6px;height:6px;background:#22C55E;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span>
+                Get in Touch
+            </div>
+            <h1>Contact <span class="accent">Us</span></h1>
+            <p>Have a question, feedback, or bug report? We'd love to hear from you.</p>
+        </div>
+
+        <div class="contact-methods">
+            <div class="contact-card">
+                <div class="icon">✉️</div>
+                <h3>Email Us</h3>
+                <p>For general inquiries, feature requests, or partnership proposals:</p>
+                <p><a href="mailto:hello@creepcalc.com">hello@creepcalc.com</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="icon">🐛</div>
+                <h3>Bug Reports</h3>
+                <p>Found a bug or something not working? Email us with details:</p>
+                <p><a href="mailto:bugs@creepcalc.com">bugs@creepcalc.com</a></p>
+            </div>
+            <div class="contact-card">
+                <div class="icon">🔒</div>
+                <h3>Privacy & Legal</h3>
+                <p>For privacy concerns or data requests:</p>
+                <p><a href="mailto:privacy@creepcalc.com">privacy@creepcalc.com</a></p>
+            </div>
+        </div>
+
+        <div class="response-time">
+            <p>We typically respond within <strong>24-48 hours</strong>. For urgent matters, mention "URGENT" in the subject line.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-left">© 2026 <strong>creepcalc</strong> — Built for freelancers</div>
+        <div class="footer-links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </div>
+    </footer>
+
+    <style>@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }</style>
+</body>
+</html>
