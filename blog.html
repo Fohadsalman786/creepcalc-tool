@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — CreepCalc | Freelancer Tips & Guides</title>
+    <meta name="description" content="Tips, guides, and insights about freelancing, pricing, scope creep, and protecting yourself as a freelancer.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- ===== 📢 ADSENSE SETUP =====
+         Replace ca-pub-XXXXXXXXXXXXXXXX with your Publisher ID
+    ===== -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::selection { background: #FACC15; color: #000; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; font-weight: 700;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-logo span { color: #FACC15; }
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a {
+            font-size: 0.85rem; color: #9CA3AF;
+            transition: color 0.3s; letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: #FACC15; }
+        .nav-links a.active { color: #FACC15; }
+        .nav-cta {
+            background: #FACC15; color: #000;
+            padding: 0.5rem 1.2rem; border-radius: 6px;
+            font-weight: 600; font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: #EAB308; transform: translateY(-1px); }
+        .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+        /* ===== BLOG PAGE ===== */
+        .blog-page {
+            padding: 120px 2rem 4rem;
+            max-width: 1100px; margin: 0 auto;
+        }
+        .blog-eyebrow {
+            font-size: 0.75rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: #FACC15;
+            margin-bottom: 1rem;
+        }
+        .blog-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700; line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .blog-subtitle {
+            color: #9CA3AF; font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .blog-card {
+            background: #0A0A0F;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .blog-card:hover {
+            border-color: rgba(250,204,21,0.3);
+            transform: translateY(-2px);
+        }
+        .blog-card-tag {
+            display: inline-block;
+            background: rgba(250,204,21,0.1);
+            color: #FACC15;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+        .blog-card h3 {
+            font-size: 1.15rem; font-weight: 600;
+            margin-bottom: 0.75rem; line-height: 1.4;
+        }
+        .blog-card p {
+            color: #9CA3AF; font-size: 0.9rem;
+            line-height: 1.6; margin-bottom: 1rem;
+        }
+        .blog-card-meta {
+            display: flex; justify-content: space-between;
+            align-items: center;
+            color: #6B7280; font-size: 0.8rem;
+        }
+        .blog-card-meta .read-time { color: #FACC15; }
+
+        /* ===== AD SLOTS ===== */
+        .ad-container { max-width: 728px; margin: 2.5rem auto; }
+        .ad-slot {
+            background: #0A0A0F;
+            border: 2px dashed rgba(250,204,21,0.25);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .ad-slot.demo { border: 2px dashed rgba(250,204,21,0.4); }
+        .ad-slot.demo .demo-ad-inner {
+            display: flex; align-items: center; justify-content: center; gap: 1rem; width: 100%;
+        }
+        .ad-slot.demo .demo-ad-icon {
+            width: 36px; height: 36px;
+            background: rgba(250,204,21,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; color: #FACC15;
+        }
+        .ad-slot.demo .demo-ad-text { text-align: left; }
+        .ad-slot.demo .demo-ad-text strong { color: #D1D5DB; font-size: 0.8rem; }
+        .ad-slot.demo .demo-ad-text p { color: #6B7280; font-size: 0.7rem; margin-top: 0.2rem; }
+
+        /* ===== AFFILIATE BANNER ===== */
+        .affiliate-banner {
+            max-width: 800px; margin: 2rem auto;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1a 100%);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .affiliate-banner p { color: #D1D5DB; font-size: 0.9rem; }
+        .affiliate-banner strong { color: #FACC15; }
+        .affiliate-banner a {
+            background: #FACC15; color: #000;
+            padding: 0.6rem 1.5rem; border-radius: 6px;
+            font-weight: 600; font-size: 0.85rem;
+            white-space: nowrap; transition: all 0.3s;
+        }
+        .affiliate-banner a:hover { background: #EAB308; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 800px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 1rem; align-items: center;
+        }
+        .footer-copy { color: #6B7280; font-size: 0.8rem; }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: #9CA3AF; font-size: 0.8rem; transition: color 0.3s; }
+        .footer-links a:hover { color: #FACC15; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .blog-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 64px; left: 0; right: 0;
+                background: rgba(0,0,0,0.95); padding: 1.5rem 2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .nav-toggle { display: block; }
+            .affiliate-banner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION (SAME ON ALL PAGES) ===== -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">Creep<span>Calc</span></a>
+    <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculator">Calculator</a>
+        <a href="index.html#ai-detector">AI Detector</a>
+        <a href="index.html#ghost-protect">Ghost Protect</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://coverpitch.io" class="nav-cta" target="_blank">CoverPitch →</a>
+    </div>
+</nav>
+
+<!-- ===== BLOG CONTENT ===== -->
+<div class="blog-page">
+    <div class="blog-eyebrow">The Blog</div>
+    <h1 class="blog-title">Tips, guides, and insights about freelancing, pricing, and avoiding scope creep.</h1>
+    <p class="blog-subtitle">Learn how to protect your time, money, and sanity as a freelancer.</p>
+
+    <div class="blog-grid">
+        <div class="blog-card">
+            <span class="blog-card-tag">Pricing</span>
+            <h3>How to Price Freelance Projects Without Losing Money</h3>
+            <p>Most freelancers undercharge because they don't account for scope creep. Here's how to build buffer into your pricing...</p>
+            <div class="blog-card-meta">
+                <span>Jul 20, 2026</span>
+                <span class="read-time">5 min read</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <span class="blog-card-tag">Client Management</span>
+            <h3>5 Signs Your Client Is About to Cause Scope Creep</h3>
+            <p>Learn to spot the red flags early. From vague project descriptions to "just one more thing" emails...</p>
+            <div class="blog-card-meta">
+                <span>Jul 15, 2026</span>
+                <span class="read-time">4 min read</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <span class="blog-card-tag">Contracts</span>
+            <h3>The Freelancer's Guide to Scope-Locked Contracts</h3>
+            <p>How to write contracts that protect you from endless revisions and "small changes" that add up...</p>
+            <div class="blog-card-meta">
+                <span>Jul 10, 2026</span>
+                <span class="read-time">7 min read</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <span class="blog-card-tag">Tools</span>
+            <h3>Why You Should Track Scope Creep on Every Project</h3>
+            <p>Using data to understand your true hourly rate and avoid the "I made $5/hour" nightmare...</p>
+            <div class="blog-card-meta">
+                <span>Jul 5, 2026</span>
+                <span class="read-time">3 min read</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <span class="blog-card-tag">Strategy</span>
+            <h3>How I Stopped Losing Money on Client Projects</h3>
+            <p>A personal story about turning around a freelancing disaster into a profitable system...</p>
+            <div class="blog-card-meta">
+                <span>Jul 1, 2026</span>
+                <span class="read-time">6 min read</span>
+            </div>
+        </div>
+        <div class="blog-card">
+            <span class="blog-card-tag">Freelance Tips</span>
+            <h3>Client Says "This Should Be Quick" — What to Do</h3>
+            <p>How to respond professionally when clients try to minimize the work required...</p>
+            <div class="blog-card-meta">
+                <span>Jun 28, 2026</span>
+                <span class="read-time">4 min read</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AD SLOT: Blog Page -->
+<div class="ad-container">
+    <div class="ad-slot demo">
+        <div class="demo-ad-inner">
+            <div class="demo-ad-icon">📢</div>
+            <div class="demo-ad-text">
+                <strong>AD SPACE — Blog Page (728×90)</strong>
+                <p>Google AdSense ad will appear here. Replace with your ad unit code.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AD SLOT: Before Footer (Responsive) -->
+<div class="ad-container">
+    <div class="ad-slot demo">
+        <div class="demo-ad-inner">
+            <div class="demo-ad-icon">📢</div>
+            <div class="demo-ad-text">
+                <strong>AD SPACE — Responsive (320×100)</strong>
+                <p>Google AdSense ad will appear here before footer.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AFFILIATE BANNER -->
+<div class="affiliate-banner">
+    <p>Need invoicing and accounting that tracks every dollar? Try <strong>FreshBooks</strong> free for 30 days — built for freelancers.</p>
+    <a href="https://your-affiliate-link-here.com/freshbooks" target="_blank" rel="noopener">Start Free Trial →</a>
+</div>
+
+<!-- ===== FOOTER (SAME ON ALL PAGES) ===== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-copy">© 2026 CreepCalc.com — Free tools for freelancers.</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="index.html#calculator">Calculator</a>
+            <a href="index.html#ai-detector">AI Detector</a>
+            <a href="index.html#ghost-protect">Ghost Protect</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="https://coverpitch.io" target="_blank">CoverPitch ↗</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleMobileNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+</body>
+</html>

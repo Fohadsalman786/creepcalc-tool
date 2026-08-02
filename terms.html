@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service — CreepCalc</title>
+    <meta name="description" content="Terms of Service for CreepCalc.com. Read our terms and conditions for using our free freelancer tools.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::selection { background: #FACC15; color: #000; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; font-weight: 700;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-logo span { color: #FACC15; }
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a {
+            font-size: 0.85rem; color: #9CA3AF;
+            transition: color 0.3s; letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: #FACC15; }
+        .nav-links a.active { color: #FACC15; }
+        .nav-cta {
+            background: #FACC15; color: #000;
+            padding: 0.5rem 1.2rem; border-radius: 6px;
+            font-weight: 600; font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: #EAB308; transform: translateY(-1px); }
+        .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+        /* ===== LEGAL PAGE ===== */
+        .legal-page {
+            padding: 120px 2rem 4rem;
+            max-width: 800px; margin: 0 auto;
+        }
+        .legal-eyebrow {
+            font-size: 0.75rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: #FACC15;
+            margin-bottom: 1rem;
+        }
+        .legal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700; line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .legal-updated {
+            color: #6B7280; font-size: 0.85rem;
+            margin-bottom: 3rem;
+        }
+        .legal-content h2 {
+            font-size: 1.3rem; font-weight: 600;
+            margin-top: 2.5rem; margin-bottom: 1rem;
+            color: #FACC15;
+        }
+        .legal-content p {
+            color: #D1D5DB; font-size: 0.95rem;
+            margin-bottom: 1rem; line-height: 1.8;
+        }
+        .legal-content ul {
+            color: #D1D5DB; font-size: 0.95rem;
+            margin-bottom: 1rem; padding-left: 1.5rem;
+        }
+        .legal-content li { margin-bottom: 0.5rem; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 800px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 1rem; align-items: center;
+        }
+        .footer-copy { color: #6B7280; font-size: 0.8rem; }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: #9CA3AF; font-size: 0.8rem; transition: color 0.3s; }
+        .footer-links a:hover { color: #FACC15; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 64px; left: 0; right: 0;
+                background: rgba(0,0,0,0.95); padding: 1.5rem 2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION (SAME ON ALL PAGES) ===== -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">Creep<span>Calc</span></a>
+    <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculator">Calculator</a>
+        <a href="index.html#ai-detector">AI Detector</a>
+        <a href="index.html#ghost-protect">Ghost Protect</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://coverpitch.io" class="nav-cta" target="_blank">CoverPitch →</a>
+    </div>
+</nav>
+
+<!-- ===== TERMS OF SERVICE CONTENT ===== -->
+<div class="legal-page">
+    <div class="legal-eyebrow">Legal</div>
+    <h1 class="legal-title">Terms of Service</h1>
+    <p class="legal-updated">Last updated: August 1, 2026</p>
+
+    <div class="legal-content">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing and using CreepCalc.com ("the Website"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our website or tools.</p>
+
+        <h2>2. Description of Service</h2>
+        <p>CreepCalc.com provides free online tools for freelancers, including:</p>
+        <ul>
+            <li>Scope Creep Calculator — estimates additional costs from scope changes</li>
+            <li>AI Scope Creep Detector — analyzes contracts and requests using AI</li>
+            <li>Ghost Protection Document Generator — creates client sign-off forms</li>
+            <li>Blog content related to freelancing and scope management</li>
+        </ul>
+
+        <h2>3. Free Use & No Warranty</h2>
+        <p>All tools on CreepCalc.com are provided <strong>free of charge</strong> and <strong>"as is"</strong> without any warranty of any kind, express or implied. We do not guarantee:</p>
+        <ul>
+            <li>The accuracy, completeness, or reliability of any calculations or AI outputs</li>
+            <li>That the tools will be available at all times without interruption</li>
+            <li>That generated documents have legal validity in any jurisdiction</li>
+        </ul>
+
+        <h2>4. Not Legal Advice</h2>
+        <p><strong>Important:</strong> CreepCalc.com does NOT provide legal advice. The tools and content on this website are for informational and educational purposes only. Generated documents (such as sign-off forms or demand letters) are templates and may not be legally binding. Always consult a qualified legal professional for legal matters.</p>
+
+        <h2>5. AI-Powered Features</h2>
+        <p>Our AI-powered features use third-party AI services (OpenAI). By using these features:</p>
+        <ul>
+            <li>You acknowledge that AI outputs may contain errors or inaccuracies</li>
+            <li>You agree not to rely solely on AI outputs for important business decisions</li>
+            <li>You understand that text you input is sent to OpenAI's servers for processing</li>
+            <li>You agree not to input sensitive personal information (passwords, financial details, etc.)</li>
+        </ul>
+
+        <h2>6. User Responsibilities</h2>
+        <p>When using our tools, you agree to:</p>
+        <ul>
+            <li>Use the tools only for lawful purposes</li>
+            <li>Not attempt to reverse-engineer, hack, or disrupt our services</li>
+            <li>Not use automated bots or scripts to access our tools excessively</li>
+            <li>Not use our tools to generate fraudulent or misleading documents</li>
+        </ul>
+
+        <h2>7. Intellectual Property</h2>
+        <p>The CreepCalc.com website, including its design, code, content, and branding, is owned by us and protected by intellectual property laws. You may not copy, reproduce, or distribute our website content without permission. However, any documents generated by our tools for your personal use belong to you.</p>
+
+        <h2>8. Advertising</h2>
+        <p>CreepCalc.com displays advertisements through Google AdSense and may include affiliate links. We are not responsible for the content, products, or services advertised by third parties.</p>
+
+        <h2>9. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, CreepCalc.com and its operators shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of our tools or website. This includes, but is not limited to, loss of revenue, data, or business opportunities.</p>
+
+        <h2>10. Changes to Terms</h2>
+        <p>We reserve the right to modify these terms at any time. Changes will be posted on this page with an updated date. Continued use of the website after changes constitutes acceptance of the new terms.</p>
+
+        <h2>11. Governing Law</h2>
+        <p>These terms shall be governed by and construed in accordance with applicable laws. Any disputes arising from these terms shall be resolved through appropriate legal channels.</p>
+
+        <h2>12. Contact</h2>
+        <p>If you have any questions about these Terms of Service, please <a href="contact.html" style="color: #FACC15;">contact us</a>.</p>
+    </div>
+</div>
+
+<!-- ===== FOOTER (SAME ON ALL PAGES) ===== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-copy">© 2026 CreepCalc.com — Free tools for freelancers.</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="index.html#calculator">Calculator</a>
+            <a href="index.html#ai-detector">AI Detector</a>
+            <a href="index.html#ghost-protect">Ghost Protect</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="https://coverpitch.io" target="_blank">CoverPitch ↗</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleMobileNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+</body>
+</html>

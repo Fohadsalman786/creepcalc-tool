@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — CreepCalc</title>
+    <meta name="description" content="Privacy Policy for CreepCalc.com. Learn how we handle your data and protect your privacy.">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ::selection { background: #FACC15; color: #000; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 0 2rem;
+            height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem; font-weight: 700;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .nav-logo span { color: #FACC15; }
+        .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+        .nav-links a {
+            font-size: 0.85rem; color: #9CA3AF;
+            transition: color 0.3s; letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: #FACC15; }
+        .nav-links a.active { color: #FACC15; }
+        .nav-cta {
+            background: #FACC15; color: #000;
+            padding: 0.5rem 1.2rem; border-radius: 6px;
+            font-weight: 600; font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+        .nav-cta:hover { background: #EAB308; transform: translateY(-1px); }
+        .nav-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+        /* ===== LEGAL PAGE ===== */
+        .legal-page {
+            padding: 120px 2rem 4rem;
+            max-width: 800px; margin: 0 auto;
+        }
+        .legal-eyebrow {
+            font-size: 0.75rem; letter-spacing: 0.2em;
+            text-transform: uppercase; color: #FACC15;
+            margin-bottom: 1rem;
+        }
+        .legal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700; line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        .legal-updated {
+            color: #6B7280; font-size: 0.85rem;
+            margin-bottom: 3rem;
+        }
+        .legal-content h2 {
+            font-size: 1.3rem; font-weight: 600;
+            margin-top: 2.5rem; margin-bottom: 1rem;
+            color: #FACC15;
+        }
+        .legal-content p {
+            color: #D1D5DB; font-size: 0.95rem;
+            margin-bottom: 1rem; line-height: 1.8;
+        }
+        .legal-content ul {
+            color: #D1D5DB; font-size: 0.95rem;
+            margin-bottom: 1rem; padding-left: 1.5rem;
+        }
+        .legal-content li { margin-bottom: 0.5rem; }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 800px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 1rem; align-items: center;
+        }
+        .footer-copy { color: #6B7280; font-size: 0.8rem; }
+        .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .footer-links a { color: #9CA3AF; font-size: 0.8rem; transition: color 0.3s; }
+        .footer-links a:hover { color: #FACC15; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 64px; left: 0; right: 0;
+                background: rgba(0,0,0,0.95); padding: 1.5rem 2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .nav-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION (SAME ON ALL PAGES) ===== -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">Creep<span>Calc</span></a>
+    <button class="nav-toggle" onclick="toggleMobileNav()">☰</button>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#calculator">Calculator</a>
+        <a href="index.html#ai-detector">AI Detector</a>
+        <a href="index.html#ghost-protect">Ghost Protect</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://coverpitch.io" class="nav-cta" target="_blank">CoverPitch →</a>
+    </div>
+</nav>
+
+<!-- ===== PRIVACY POLICY CONTENT ===== -->
+<div class="legal-page">
+    <div class="legal-eyebrow">Legal</div>
+    <h1 class="legal-title">Privacy Policy</h1>
+    <p class="legal-updated">Last updated: August 1, 2026</p>
+
+    <div class="legal-content">
+        <h2>1. Introduction</h2>
+        <p>Welcome to CreepCalc.com ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you visit our website.</p>
+
+        <h2>2. Information We Collect</h2>
+        <p>We collect minimal information to provide you with the best experience:</p>
+        <ul>
+            <li><strong>Usage Data:</strong> We automatically collect information about how you interact with our website, including pages visited, time spent, and browser type. This is collected through Google Analytics and similar tools.</li>
+            <li><strong>Contact Information:</strong> If you use our contact form, we collect your email address, subject, and message content solely to respond to your inquiry.</li>
+            <li><strong>Tool Input Data:</strong> Any text you enter into our tools (contracts, requests, etc.) is processed in real-time and is NOT stored on our servers. AI-powered features send data to OpenAI's API for processing, subject to their privacy policy.</li>
+        </ul>
+
+        <h2>3. How We Use Your Information</h2>
+        <p>We use collected information for the following purposes:</p>
+        <ul>
+            <li>To provide and maintain our free tools</li>
+            <li>To respond to your contact form submissions</li>
+            <li>To analyze website traffic and improve user experience</li>
+            <li>To display relevant advertisements through Google AdSense</li>
+        </ul>
+
+        <h2>4. Cookies and Advertising</h2>
+        <p>We use cookies for:</p>
+        <ul>
+            <li><strong>Essential Cookies:</strong> Required for the website to function properly.</li>
+            <li><strong>Analytics Cookies:</strong> Google Analytics uses cookies to help us understand how visitors use our site.</li>
+            <li><strong>Advertising Cookies:</strong> Google AdSense uses cookies to serve personalized ads based on your browsing history. You can opt out of personalized advertising at <a href="https://www.google.com/settings/ads" style="color: #FACC15;">Google Ad Settings</a>.</li>
+        </ul>
+
+        <h2>5. Third-Party Services</h2>
+        <p>We use the following third-party services:</p>
+        <ul>
+            <li><strong>Google AdSense:</strong> For displaying advertisements. <a href="https://policies.google.com/privacy" style="color: #FACC15;">Google's Privacy Policy</a></li>
+            <li><strong>OpenAI API:</strong> For AI-powered features. Data sent to OpenAI is subject to their <a href="https://openai.com/privacy" style="color: #FACC15;">Privacy Policy</a>.</li>
+            <li><strong>Formspree:</strong> For processing contact form submissions. <a href="https://formspree.io/legal/privacy-policy" style="color: #FACC15;">Formspree's Privacy Policy</a></li>
+            <li><strong>Cloudflare:</strong> For hosting and CDN services. <a href="https://www.cloudflare.com/privacypolicy/" style="color: #FACC15;">Cloudflare's Privacy Policy</a></li>
+        </ul>
+
+        <h2>6. Data Retention</h2>
+        <p>We do not store any data you enter into our tools. Contact form submissions are retained only until your inquiry is resolved. Analytics data is retained for up to 26 months as per Google Analytics defaults.</p>
+
+        <h2>7. Your Rights</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access the personal data we hold about you</li>
+            <li>Request deletion of your personal data</li>
+            <li>Opt out of personalized advertising</li>
+            <li>Disable cookies through your browser settings</li>
+        </ul>
+
+        <h2>8. Children's Privacy</h2>
+        <p>Our website is not intended for children under 13 years of age. We do not knowingly collect personal information from children.</p>
+
+        <h2>9. Changes to This Policy</h2>
+        <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.</p>
+
+        <h2>10. Contact Us</h2>
+        <p>If you have any questions about this privacy policy, please <a href="contact.html" style="color: #FACC15;">contact us</a>.</p>
+    </div>
+</div>
+
+<!-- ===== FOOTER (SAME ON ALL PAGES) ===== -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-copy">© 2026 CreepCalc.com — Free tools for freelancers.</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="index.html#calculator">Calculator</a>
+            <a href="index.html#ai-detector">AI Detector</a>
+            <a href="index.html#ghost-protect">Ghost Protect</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="https://coverpitch.io" target="_blank">CoverPitch ↗</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+function toggleMobileNav() {
+    document.getElementById('navLinks').classList.toggle('open');
+}
+</script>
+</body>
+</html>
